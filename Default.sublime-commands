@@ -1,0 +1,18 @@
+[
+    {
+    	"caption": "SublimeSQL: Use database",
+    	"command": "use_database"
+    },
+    {
+        "caption": "SublimeSQL: Select from Table",
+        "command": "select_from_table"
+    },
+    {
+        "caption": "SublimeSQL: Execute Query",
+        "command": "run_query"
+    },
+    {
+        "caption": "SublimeSQL: Get Table Schema",
+        "command": "get_table_schema"
+    }
+]
