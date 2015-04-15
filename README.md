@@ -39,7 +39,7 @@ The ``SublimeSQL: Get Table Schema`` command provides a list of tables in the qu
 
 ##Completions
 
-When you're in a SQL file, and you activate the completion menu using _ctrl+space_, SublimeSQL will go get the list of tables from the current database to populate the list. This would be way cooler if it could be smart and suggest valid stuff like SSMS does, but that would require some sort of SQL interpreter, and I think that's outside the scope of this plugin.
+When you're in a SQL file, and you activate the completion menu using _ctrl+space_, SublimeSQL will go get the list of tables from the current database to populate the list. This would be way cooler if it could be smart and suggest valid stuff like SSMS does, but that would require some sort of SQL interpreter, and I think that's outside the scope of this plugin. Currently, in order for the completions to work, you need to be working in a file with the syntax set to SQL.
 
 ##Notes
 
