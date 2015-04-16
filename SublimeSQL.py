@@ -3,7 +3,6 @@ import subprocess
 
 class run_queryCommand(sublime_plugin.WindowCommand):
 	def run(self):
-
 		settings = sublime.load_settings("SublimeSQL.sublime-settings")
 		server = sublime.active_window().active_view().settings().get("server", settings.get("server", "None"))
 		database = sublime.active_window().active_view().settings().get("database", settings.get("database", "None"))
@@ -81,6 +80,8 @@ class select_from_tableCommand(sublime_plugin.WindowCommand):
 	tables = []
 	def run(self):
 		
+		self.tables = []
+		
 		if len(self.tables) == 0:
 			view = self.window.active_view()
 
@@ -114,7 +115,6 @@ class select_from_tableCommand(sublime_plugin.WindowCommand):
 			database = sublime.active_window().active_view().settings().get("database", settings.get("database", "None"))
 			select_top_count = sublime.active_window().active_view().settings().get("select_top_count", settings.get("select_top_count", "50"))
 
-			# query_results = subprocess.check_output(["sqlcmd", "-S", server, "-d", database, "-k", "-Y", "30", "-Q", "select top " + select_top_count + " * from " + self.tables[user_input]]).decode("utf-8").replace("\r\n", "\n")
 			proc = subprocess.Popen(["sqlcmd", "-S", server, "-d", database, "-k", "-Y", "30", "-Q", "select top " + select_top_count + " * from " + self.tables[user_input]], stdout=subprocess.PIPE)
 			query_results = proc.communicate()[0].decode("utf-8").replace("\r\n", "\n")
 
@@ -131,6 +131,8 @@ class get_table_schemaCommand(sublime_plugin.WindowCommand):
 	tables = []
 	def run(self):
 		
+		self.tables = []
+
 		if len(self.tables) == 0:
 			view = self.window.active_view()
 
@@ -185,6 +187,9 @@ class table_autocomplete(sublime_plugin.EventListener):
 	tables = []
 	def on_query_completions(self, view, prefix, locations):
 
+		#Temporary fix for lists not updating properly when switching databases/servers
+		self.tables = []
+
 		complete = False
 
 		for loc in locations:
@@ -212,8 +217,6 @@ class table_autocomplete(sublime_plugin.EventListener):
 			return
 
 		#Run query and convert byte string into regular string
-		# table_list = subprocess.check_output(["sqlcmd", "-S", server, "-d", database, "-Q", "select table_name from INFORMATION_SCHEMA.TABLES where table_type = 'BASE TABLE' and table_catalog = '" + database + "' order by table_name"]).decode("utf-8")
-
 		proc = subprocess.Popen(["sqlcmd", "-S", server, "-d", database, "-Q", "select table_name from INFORMATION_SCHEMA.TABLES where table_type = 'BASE TABLE' and table_catalog = '" + database + "' order by table_name"], stdout=subprocess.PIPE)
 		table_list = proc.communicate()[0].decode("utf-8")
 
