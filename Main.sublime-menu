@@ -1,5 +1,29 @@
 [
     {
+        "id": "tools",
+        "caption": "Tools",
+        "children":
+        [
+            {
+                "id": "packages",
+                "caption:": "Packages",
+                "children":
+                [
+                    {
+                        "caption": "SublimeSQL",
+                        "children":
+                        [
+                            {
+                                "caption": "Execute Query",
+                                "command": "run_query"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "caption": "Preferences",
         "mnemonic": "n",
         "id": "preferences",
@@ -46,30 +70,6 @@
                                 "caption": "Key Bindings – User"
                             },
                             { "caption": "-" }
-                        ]
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "tools",
-        "caption": "Tools",
-        "children":
-        [
-            {
-                "id": "packages",
-                "caption:": "Packages",
-                "children":
-                [
-                    {
-                        "caption": "SublimeSQL",
-                        "children":
-                        [
-                            {
-                                "caption": "Execute Query",
-                                "command": "run_query"
-                            }
                         ]
                     }
                 ]
