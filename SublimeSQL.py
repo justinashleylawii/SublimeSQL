@@ -53,8 +53,11 @@ class use_databaseCommand(sublime_plugin.WindowCommand):
 
 		self.databases = []
 		
+		settings = sublime.load_settings("SublimeSQL.sublime-settings")
+		server = self.window.active_view().settings().get("server", settings.get("server", "None"))
+
 		if len(self.databases) == 0:
-			proc = subprocess.Popen(["sqlcmd", "-S", "queen1sql", "-Q", "select name from master..sysdatabases order by name"], stdout=subprocess.PIPE)
+			proc = subprocess.Popen(["sqlcmd", "-S", server, "-Q", "select name from master..sysdatabases order by name"], stdout=subprocess.PIPE)
 			database_list = proc.communicate()[0].decode("utf-8")
 
 			#Split string into list
