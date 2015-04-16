@@ -51,6 +51,8 @@ class use_databaseCommand(sublime_plugin.WindowCommand):
 	databases = []
 	def run(self):
 
+		self.databases = []
+		
 		if len(self.databases) == 0:
 			proc = subprocess.Popen(["sqlcmd", "-S", "queen1sql", "-Q", "select name from master..sysdatabases order by name"], stdout=subprocess.PIPE)
 			database_list = proc.communicate()[0].decode("utf-8")
