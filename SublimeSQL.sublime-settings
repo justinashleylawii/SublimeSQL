@@ -1,0 +1,8 @@
+{
+	"server": "",
+	"database": "",
+	//The number of rows to select from tables using the "Select from Table" command. Use "all" to just select all rows from table.
+	"select_top_count": "100",
+	//Valid options: window, or panel. Window opens query output in another window (Default), panel opens query output in an output panel (looks like the console)
+	"output": "panel"
+}
